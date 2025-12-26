@@ -19,10 +19,10 @@ The system simulates traffic monitoring for Waco, Texas, processing data from in
 ![Grafana Dashboard](images/grafana-dashboard.png)
 
 ## Distributed Stream Processing
-![Spark Streaming Jobs](screenshots/spark-ui-jobs.png)
+![Spark Streaming Jobs](images/spark-ui-jobs.png)
 
 ## Prometheus Graph
-![Prometheus Metrics](screenshots/prometheus-graph.png)
+![Prometheus Metrics](images/prometheus-graph.png)
 
 
 
