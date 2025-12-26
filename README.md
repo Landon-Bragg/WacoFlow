@@ -2,7 +2,7 @@
 
 > A production-grade distributed system for real-time traffic monitoring and congestion prediction using Apache Spark, Kafka, and machine learning.
 
-## 🎯 Project Overview
+## Project Overview
 
 WacoFlow is a scalable, fault-tolerant traffic management system designed to process real-time data from urban traffic sensors. Built with enterprise-grade distributed systems patterns, it demonstrates:
 
@@ -15,7 +15,10 @@ WacoFlow is a scalable, fault-tolerant traffic management system designed to pro
 
 The system simulates traffic monitoring for Waco, Texas, processing data from intersection sensors and highway detectors to predict congestion before it occurs—enabling proactive traffic light optimization and route recommendations.
 
-## 🏗️ Architecture
+## Grafana Dashboard
+!(images/grafana-dashboard)
+
+##  Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -44,24 +47,16 @@ The system simulates traffic monitoring for Waco, Texas, processing data from in
 
 ### 1. Fault-Tolerant Data Ingestion
 - **Circuit Breaker Pattern**: Prevents cascading failures when external APIs are down
-- **Exponential Backoff Retry**: Graceful handling of transient errors
-- **Dead Letter Queue**: Captures failed messages for debugging
 
 ### 2. Distributed Stream Processing
 - **5-Minute Rolling Windows**: Real-time aggregations with late-data handling
-- **Multi-Level Aggregations**: Average, max, min metrics per intersection
-- **Anomaly Detection**: Automatic flagging of congestion (clear/light/moderate/severe)
 
 ### 3. Production-Grade Monitoring
 - **Prometheus Metrics**: Custom metrics for all services
-- **Grafana Dashboards**: Real-time visualization of traffic patterns
-- **Spark UI**: Live monitoring of processing rates and batch durations
 
 ### 4. Scalable Architecture
 - **Kafka Partitioning**: Horizontal scaling of message throughput
-- **Spark Workers**: Add workers to increase processing capacity
 
-## Quick Start
 
 ### Prerequisites
 - Docker Desktop 20.10+
@@ -109,16 +104,6 @@ python spark-processor/streaming_job.py
 - **Prometheus:** http://localhost:9090
 - **Spark UI:** http://localhost:4040
 
-## 📊 Screenshots
-
-### Real-Time Traffic Dashboard
-![Grafana Dashboard](screenshots/grafana-dashboard.png)
-
-### Spark Streaming Statistics
-![Spark Streaming](screenshots/spark-streaming-stats.png)
-
-### Distributed Processing Console
-![Spark Console](screenshots/spark-console-output.png)
 
 ## Technology Stack
 
@@ -130,8 +115,7 @@ python spark-processor/streaming_job.py
 | **Monitoring** | Prometheus + Grafana | Metrics collection and visualization |
 | **Database** | TimescaleDB | Time-series data storage |
 | **Orchestration** | Kubernetes | Container orchestration and auto-scaling |
-| **ML Framework** | PyTorch 2.5 | Traffic prediction models (optional) |
-
+|
 ## Performance Metrics
 
 | Metric | Value | Notes |
@@ -140,7 +124,6 @@ python spark-processor/streaming_job.py
 | **Kafka Throughput** | 50K msgs/sec | Tested with 50 sensors |
 | **Spark Processing Rate** | 200ms/batch (P95) | 5-min windows |
 | **System Uptime** | 99.9% | With circuit breaker enabled |
-| **Auto-Scale Time** | <30s | K8s HPA response |
 
 ## Demo Scenarios
 
@@ -156,50 +139,3 @@ This demonstrates:
 3. ✅ Event-driven traffic spikes (game day)
 4. ✅ System architecture walkthrough
 5. ✅ Real-time metrics and monitoring
-
-##  Configuration
-
-### Environment Variables
-
-```bash
-# Kafka Configuration
-KAFKA_BOOTSTRAP_SERVERS=localhost:9092
-
-# API Configuration
-FLOWCUBE_API_URL=http://localhost:8001
-
-# Spark Configuration
-SPARK_MASTER=local[4]
-SPARK_CHECKPOINT_DIR=/tmp/spark-checkpoint
-```
-
-### Scaling Configuration
-
-**Kafka Partitions:**
-```bash
-# Increase for higher throughput
-kafka-topics --alter --topic intersection-data --partitions 10
-```
-
-**Spark Workers:**
-```python
-# In streaming_job.py
-spark.conf.set("spark.sql.shuffle.partitions", "10")
-```
-
-## Testing
-
-```bash
-# Unit tests
-pytest tests/
-
-# Integration tests
-pytest tests/integration/
-
-# Load testing
-python scripts/load_test.py --rps 1000 --duration 300
-```
-
-
-
-**Built to demonstrate production-grade distributed systems engineering**
