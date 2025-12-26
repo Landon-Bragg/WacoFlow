@@ -16,7 +16,15 @@ WacoFlow is a scalable, fault-tolerant traffic management system designed to pro
 The system simulates traffic monitoring for Waco, Texas, processing data from intersection sensors and highway detectors to predict congestion before it occurs—enabling proactive traffic light optimization and route recommendations.
 
 ## Grafana Dashboard
-![Grafana Dashboard](images/grafana-dashboard)
+![Grafana Dashboard](images/grafana-dashboard.png)
+
+## Distributed Stream Processing
+![Spark Streaming Jobs](screenshots/spark-ui-jobs.png)
+
+## Prometheus Graph
+![Prometheus Metrics](screenshots/prometheus-graph.png)
+
+
 
 ##  Architecture
 
