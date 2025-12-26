@@ -1,0 +1,58 @@
+{
+  "dashboard": {
+    "title": "WacoFlow Traffic Overview",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Total Vehicles by Intersection",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(flowcube_vehicle_count) by (intersection_id)",
+            "legendFormat": "{{intersection_id}}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}
+      },
+      {
+        "id": 2,
+        "title": "Average Wait Time",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "flowcube_avg_wait_time",
+            "legendFormat": "{{intersection_id}}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}
+      },
+      {
+        "id": 3,
+        "title": "API Request Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(flowcube_requests_total[1m])",
+            "legendFormat": "{{endpoint}}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8}
+      },
+      {
+        "id": 4,
+        "title": "Active Intersections",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "flowcube_active_intersections"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8}
+      }
+    ],
+    "refresh": "5s",
+    "time": {"from": "now-5m", "to": "now"},
+    "timezone": "browser"
+  },
+  "overwrite": true
+}
